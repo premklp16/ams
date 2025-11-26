@@ -1,0 +1,131 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doctor Login</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{
+      font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+      background:#f5f5f5;min-height:100vh;padding:20px;
+    }
+    .container{max-width:1200px;margin:0 auto;}
+    .card{
+      background:white;border-radius:12px;padding:30px;
+      margin:20px auto;max-width:500px;
+      box-shadow:0 10px 40px rgba(0,0,0,0.1);
+    }
+    .card-header{text-align:center;margin-bottom:30px;}
+    .card-header h1{color:#333;font-size:28px;margin-bottom:10px;}
+    .card-header p{color:#666;font-size:14px;}
+    .note{
+      background:#fff3cd;padding:10px;border-radius:6px;
+      margin-top:10px;font-size:13px;color:#856404;
+    }
+    .form-group{margin-bottom:20px;}
+    label{display:block;margin-bottom:8px;color:#333;font-weight:500;}
+    input{
+      width:100%;padding:12px;border:1px solid #ddd;
+      border-radius:6px;font-size:14px;transition:border-color 0.3s;
+    }
+    input:focus{outline:none;border-color:#667eea;}
+    .btn{
+      width:100%;padding:14px;background:#667eea;color:white;
+      border:none;border-radius:6px;font-size:16px;font-weight:600;
+      cursor:pointer;transition:background 0.3s;margin-top:10px;
+    }
+    .btn:hover{background:#5568d3;}
+    .link-btn{text-align:center;margin-top:15px;}
+    .link-btn a{color:#667eea;text-decoration:none;font-size:14px;}
+    .link-btn a:hover{text-decoration:underline;}
+    .toast{
+      position:fixed;top:20px;right:20px;background:white;
+      padding:15px 20px;border-radius:8px;
+      box-shadow:0 4px 12px rgba(0,0,0,0.15);z-index:1000;
+      animation:slideIn 0.3s ease;
+    }
+    .toast.success{border-left:4px solid #28a745;}
+    .toast.error{border-left:4px solid #dc3545;}
+    @keyframes slideIn{
+      from{transform:translateX(400px);opacity:0;}
+      to{transform:translateX(0);opacity:1;}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="card-header">
+        <h1>Doctor Login</h1>
+        <p>Login to view your appointments</p>
+        <div class="note">Default password: doctor123</div>
+      </div>
+      <form onsubmit="loginDoctor(event)">
+        <div class="form-group">
+          <label>Doctor ID *</label>
+          <input type="text" id="doctor-id" required placeholder="e.g., dr1">
+        </div>
+        <div class="form-group">
+          <label>Password *</label>
+          <input type="password" id="doctor-password" required>
+        </div>
+        <button type="submit" class="btn">Login</button>
+        <div class="link-btn">
+          <a href="patient-login.html">Patient Login</a>
+        </div>
+        <div class="link-btn">
+          <a href="patient-register.html">Patient Register</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const DOCTORS = [
+      { id: 'dr1', name: 'Dr. Sarah Johnson', department: 'Cardiology', specialization: 'Heart Disease' },
+      { id: 'dr2', name: 'Dr. Michael Chen', department: 'Cardiology', specialization: 'Cardiac Surgery' },
+      { id: 'dr3', name: 'Dr. Emily Davis', department: 'Cardiology', specialization: 'Interventional Cardiology' },
+      { id: 'dr4', name: 'Dr. James Wilson', department: 'Cardiology', specialization: 'Electrophysiology' },
+      { id: 'dr5', name: 'Dr. Robert Martinez', department: 'Neurology', specialization: 'Brain Disorders' },
+      { id: 'dr6', name: 'Dr. Lisa Anderson', department: 'Neurology', specialization: 'Stroke Care' },
+      { id: 'dr7', name: 'Dr. David Thompson', department: 'Neurology', specialization: 'Epilepsy' },
+      { id: 'dr8', name: 'Dr. Maria Garcia', department: 'Neurology', specialization: 'Movement Disorders' },
+      { id: 'dr9', name: 'Dr. John Taylor', department: 'Orthopedics', specialization: 'Joint Replacement' },
+      { id: 'dr10', name: 'Dr. Jennifer Lee', department: 'Orthopedics', specialization: 'Sports Medicine' },
+      { id: 'dr11', name: 'Dr. William Brown', department: 'Orthopedics', specialization: 'Spine Surgery' },
+      { id: 'dr12', name: 'Dr. Patricia Moore', department: 'Orthopedics', specialization: 'Trauma Surgery' },
+      { id: 'dr13', name: 'Dr. Christopher White', department: 'Pediatrics', specialization: 'Child Development' },
+      { id: 'dr14', name: 'Dr. Amanda Harris', department: 'Pediatrics', specialization: 'Pediatric Cardiology' },
+      { id: 'dr15', name: 'Dr. Daniel Clark', department: 'Pediatrics', specialization: 'Neonatology' },
+      { id: 'dr16', name: 'Dr. Jessica Lewis', department: 'Pediatrics', specialization: 'Pediatric Neurology' },
+    ];
+
+    function showToast(message,type='success'){
+      const toast=document.createElement('div');
+      toast.className=`toast ${type}`;
+      toast.textContent=message;
+      document.body.appendChild(toast);
+      setTimeout(()=>toast.remove(),3000);
+    }
+
+    function loginDoctor(e){
+      e.preventDefault();
+      const id=document.getElementById('doctor-id').value;
+      const password=document.getElementById('doctor-password').value;
+      if(password!=='doctor123'){
+        showToast('Invalid password','error');
+        return;
+      }
+      const doctor=DOCTORS.find(d=>d.id===id);
+      if(doctor){
+        localStorage.setItem('currentDoctor',JSON.stringify(doctor));
+        showToast('Login successful!');
+        window.location.href='dashboard.html';
+      }else{
+        showToast('Doctor not found','error');
+      }
+    }
+  </script>
+</body>
+</html> -->
