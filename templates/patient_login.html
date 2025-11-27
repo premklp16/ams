@@ -1,128 +1,119 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Patient Login</title>
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box}
-    body{
-      font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
-      background:#f5f5f5;min-height:100vh;padding:20px;
-    }
-    .container{max-width:1200px;margin:0 auto;}
-    .card{
-      background:white;border-radius:12px;padding:30px;
-      margin:20px auto;max-width:500px;
-      box-shadow:0 10px 40px rgba(0,0,0,0.1);
-    }
-    .card-header{text-align:center;margin-bottom:30px;}
-    .card-header h1{color:#333;font-size:28px;margin-bottom:10px;}
-    .card-header p{color:#666;font-size:14px;}
-    .form-group{margin-bottom:20px;}
-    label{display:block;margin-bottom:8px;color:#333;font-weight:500;}
-    input{
-      width:100%;padding:12px;border:1px solid #ddd;
-      border-radius:6px;font-size:14px;transition:border-color 0.3s;
-    }
-    input:focus{outline:none;border-color:#667eea;}
-    .btn{
-      width:100%;padding:14px;background:#667eea;color:white;
-      border:none;border-radius:6px;font-size:16px;font-weight:600;
-      cursor:pointer;transition:background 0.3s;margin-top:10px;
-    }
-    .btn:hover{background:#5568d3;}
-    .link-btn{text-align:center;margin-top:15px;}
-    .link-btn a{color:#667eea;text-decoration:none;font-size:14px;}
-    .link-btn a:hover{text-decoration:underline;}
-    .toast{
-      position:fixed;top:20px;right:20px;background:white;
-      padding:15px 20px;border-radius:8px;
-      box-shadow:0 4px 12px rgba(0,0,0,0.15);z-index:1000;
-      animation:slideIn 0.3s ease;
-    }
-    .toast.success{border-left:4px solid #28a745;}
-    .toast.error{border-left:4px solid #dc3545;}
-    @keyframes slideIn{
-      from{transform:translateX(400px);opacity:0;}
-      to{transform:translateX(0);opacity:1;}
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <div class="card">
-      <div class="card-header">
-        <h1>Patient Login</h1>
-        <p>Login to book and manage appointments</p>
+{% extends 'patient/layout/base.html' %}
+ {% load static %}
+{% block header %}
+
+{% endblock %}
+
+{% block content %}
+    <!-- Page Title -->
+    <div class="page-title">
+      <div class="heading">
+       <section id="appointmnet" class="appointmnet section">
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4">
+
+          <!-- Appointment Info -->
+          <div class="col-lg-6">
+            <div class="appointment-info">
+              <h3>Quick &amp; Easy Online Booking</h3>
+              <p class="mb-4">Book your appointment in just a few simple steps. Our healthcare professionals are ready to provide you with the best medical care tailored to your needs.</p>
+
+              <div class="info-items">
+                <div class="info-item d-flex align-items-center mb-3" data-aos="fade-up" data-aos-delay="200">
+                  <div class="icon-wrapper me-3">
+                    <i class="bi bi-calendar-check"></i>
+                  </div>
+                  <div>
+                    <h5>Flexible Scheduling</h5>
+                    <p class="mb-0">Choose from available time slots that fit your busy schedule</p>
+                  </div>
+                </div><!-- End Info Item -->
+
+                <div class="info-item d-flex align-items-center mb-3" data-aos="fade-up" data-aos-delay="250">
+                  <div class="icon-wrapper me-3">
+                    <i class="bi bi-stopwatch"></i>
+                  </div>
+                  <div>
+                    <h5>Quick Response</h5>
+                    <p class="mb-0">Get confirmation within 15 minutes of submitting your request</p>
+                  </div>
+                </div><!-- End Info Item -->
+
+                <div class="info-item d-flex align-items-center mb-3" data-aos="fade-up" data-aos-delay="300">
+                  <div class="icon-wrapper me-3">
+                    <i class="bi bi-shield-check"></i>
+                  </div>
+                  <div>
+                    <h5>Expert Medical Care</h5>
+                    <p class="mb-0">Board-certified doctors and specialists at your service</p>
+                  </div>
+                </div><!-- End Info Item -->
+              </div>
+
+              <div class="emergency-contact mt-4" data-aos="fade-up" data-aos-delay="350">
+                <div class="emergency-card p-3">
+                  <h6 class="mb-2"><i class="bi bi-telephone-fill me-2"></i>Emergency Hotline</h6>
+                  <p class="mb-0">Call <strong>+1 (555) 911-4567</strong> for urgent medical assistance</p>
+                </div>
+              </div>
+
+            </div>
+          </div><!-- End Appointment Info -->
+
+          <!-- Appointment Form -->
+          <div class="col-lg-6">
+            <div class="appointment-form-wrapper" data-aos="fade-up" data-aos-delay="200">
+              <form action="forms/appointment.php" method="post" class="appointment-form php-email-form">
+                <div class="row gy-3">
+
+                  <div class="col-md-6">
+                    <input type="text" name="name" class="form-control" placeholder="Your Full Name" required="">
+                  </div>
+
+                  <div class="col-md-6">
+                    <input type="email" name="email" class="form-control" placeholder="Your Email" required="">
+                  </div>
+
+                  <div class="col-12">
+                    <div class="loading">Loading</div>
+                    <div class="error-message"></div>
+                    <div class="sent-message">Your appointment request has been sent successfully. We will contact you shortly!</div>
+
+                    <button type="submit" class="btn btn-appointment w-100">
+                      <i class="bi bi-calendar-plus me-2"></i>Login
+                    </button>
+                  </div>
+
+                </div>
+              </form>
+            </div>
+          </div><!-- End Appointment Form -->
+
+        </div>
+
       </div>
-      <form onsubmit="loginPatient(event)">
-        <div class="form-group">
-          <label>Phone Number or Email *</label>
-          <input type="text" id="login-identifier" required>
-        </div>
-        <div class="form-group">
-          <label>Password *</label>
-          <input type="password" id="login-password" required>
-        </div>
-        <button type="submit" class="btn">Login</button>
-        <div class="link-btn">
-          <a href="patient-register.html">Don't have an account? Register</a>
-        </div>
-        <div class="link-btn">
-          <a href="doctor-login.html">Doctor Login</a>
-        </div>
-      </form>
-    </div>
-  </div>
 
-  <script>
-    function showToast(message,type='success'){
-      const toast=document.createElement('div');
-      toast.className=`toast ${type}`;
-      toast.textContent=message;
-      document.body.appendChild(toast);
-      setTimeout(()=>toast.remove(),3000);
-    }
-    function getPatients(){
-      return JSON.parse(localStorage.getItem('patients') || '[]');
-    }
-    function loginPatient(e){
-      e.preventDefault();
-      const patients=getPatients();
-      const identifier=document.getElementById('login-identifier').value;
-      const password=document.getElementById('login-password').value;
-      const patient=patients.find(p=>
-        (p.phone===identifier || p.email===identifier) && p.password===password
-      );
-      if(patient){
-        localStorage.setItem('currentPatient',JSON.stringify(patient));
-        showToast('Login successful!');
-        window.location.href='dashboard.html';
-      }else{
-        showToast('Invalid credentials','error');
-      }
-    }
-  </script>
-</body>
-</html> -->
+    </section>
+      </div>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>User Login</title>
-    
-</head>
-<body>
+    </div><!-- End Page Title -->
+
+
 
 <h2>Login</h2>
 
 <form method="POST">
+
     {% csrf_token %}
     {{ form.as_p }}
 
     <button type="submit">Login</button>
 </form>
 
-</body>
-</html>
+{% endblock %}
+
+{% block javascript %}
+
+ {% endblock %}

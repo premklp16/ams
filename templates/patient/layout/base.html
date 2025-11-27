@@ -1,0 +1,18 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+{% include 'patient/layout/header.html' %}
+{% block header %}
+{% endblock %}
+
+<body class="index-page">
+
+{% include 'patient/layout/navbar.html' %}
+
+  <main class="main">
+    {% block content %} {% endblock %}
+  </main>
+
+{% include 'patient/layout/footer.html' %}
+</body>
+</html>

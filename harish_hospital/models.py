@@ -47,7 +47,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     is_alpha_validator = RegexValidator(r'^[a-zA-Z]', message='name must be alphabet')
     name = models.CharField(max_length=30, blank=True, null=True, validators=[is_alpha_validator])
     # last_name = models.CharField(max_length=30, blank=True, null=True, validators=[is_alpha_validator])
-    email = models.EmailField(unique=True)
+    email = models.EmailField(unique=True, blank=True, null=True)
     phone_regex = RegexValidator(regex=r'^\+?1?\d{14,14}$',
                                  message="Phone number must be entered Up to 14 digits allowed")
     phone_number = models.CharField(max_length=10, unique=True)
