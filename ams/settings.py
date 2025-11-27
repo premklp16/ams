@@ -69,6 +69,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ams.wsgi.application'
 AUTH_USER_MODEL= "harish_hospital.CustomUser"
+AUTHENTICATION_BACKENDS = [
+    "django.contrib.auth.backends.ModelBackend",
+]
+
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases

@@ -27,7 +27,7 @@ from ams.common.utils import validate_file_extension
 #     description = models.CharField(max_length= 100)
 #     department = models.CharField(max_length= 20, null= True)
 class CustomUserManager(BaseUserManager):
-    def create_user(self, phone_number, password=None, role='pateint', **extra_fields):
+    def create_user(self, phone_number, password=None, role='patient', **extra_fields):
         if not phone_number:
             raise ValueError('The phone_number field must be set')
         # phone_number = self.normalize_phone_number(phone_number)
@@ -86,7 +86,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
 class TimeSlot(models.Model):
     # Time slot details of a particular doctor
-    doctor = models.ForeignKey(CustomUser, on_delete= models.CASCADE, limit_choices_to= {'role': 'D'})
+    doctor = models.ForeignKey(CustomUser, on_delete= models.CASCADE, limit_choices_to= {'role': 'doctor'})
     date = models.DateField()
     time = models.CharField(max_length=20)  
     is_booked = models.BooleanField(default=False)
@@ -94,7 +94,7 @@ class TimeSlot(models.Model):
 
 class Booking(models.Model):
     # Which patient booked which doctor and timeslot
-    patient = models.ForeignKey(CustomUser, on_delete= models.CASCADE, limit_choices_to= {'role':'P'}, related_name='patient_bookings')
-    doctor = models.ForeignKey(CustomUser, on_delete= models.CASCADE, limit_choices_to= {'role':'D'}, related_name='doctor_bookings')
+    patient = models.ForeignKey(CustomUser, on_delete= models.CASCADE, limit_choices_to= {'role':'patient'}, related_name='patient_bookings')
+    doctor = models.ForeignKey(CustomUser, on_delete= models.CASCADE, limit_choices_to= {'role':'doctor'}, related_name='doctor_bookings')
     timeslot = models.ForeignKey(TimeSlot, on_delete= models.CASCADE)
     description = models.TextField(blank=True, null=True)

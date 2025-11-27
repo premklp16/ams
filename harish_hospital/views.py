@@ -1,10 +1,11 @@
 from django.contrib import messages
 from django.http import HttpResponse
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.hashers import check_password, make_password
+from django.contrib.auth.decorators import login_required
 
 from harish_hospital.forms import UserRegisterForm
-from harish_hospital.models import CustomUser
+from harish_hospital.models import Booking, CustomUser, TimeSlot
 
 # Create your views here.
 def index(request):
@@ -21,7 +22,7 @@ def register(request):
         # if form.is_valid():
         #     form.save()
             messages.success(request, "Registration successful!")
-            return redirect("login_user")
+            return redirect("user_login")
         else:
             messages.error(request, "Please correct the errors below.")
     else:
@@ -59,9 +60,9 @@ def register(request):
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
-from .forms import UserLoginForm
+from .forms import BookingForm, UserLoginForm
 
-def login(request):
+def user_login(request):
     if request.method == "POST":
         form = UserLoginForm(request.POST)
 
@@ -71,7 +72,6 @@ def login(request):
 
             # Authenticate using phone number
             user = authenticate(request, username=phone, password=password)
-
             if user is not None:
                 login(request, user)
                 messages.success(request, "Login successful!")
@@ -84,6 +84,48 @@ def login(request):
         form = UserLoginForm()
 
     return render(request, "patient_login.html", {"form": form})
+
+@login_required
+def patient_dashboard(request):
+    if request.method == "POST":
+        doctors = CustomUser.objects.filter(role="doctor")
+        form = BookingForm(request.POST)
+
+        if form.is_valid():
+            doctor_id = form.cleaned_data["doctor"]
+            timeslot_id = form.cleaned_data["timeslot"]
+            description = form.cleaned_data["description"]
+
+            if not doctor_id or not timeslot_id:
+                messages.error(request, "Please select doctor and timeslot.")
+                return redirect("book_appointment")
+
+            doctor = get_object_or_404(CustomUser, id=doctor_id, role="doctor")
+            timeslot = get_object_or_404(TimeSlot, id=timeslot_id, doctor=doctor)
+
+            # Check if slot already booked
+            if timeslot.is_booked:
+                messages.error(request, "This timeslot is already booked.")
+                return redirect("register")
+
+            # Create booking
+            Booking.objects.create(
+                patient=request.user,   # logged-in patient
+                doctor=doctor,
+                timeslot=timeslot,
+                description=description
+            )
+
+            # Mark timeslot as booked
+            timeslot.is_booked = True
+            timeslot.save()
+
+            messages.success(request, "Appointment booked successfully!")
+            return redirect("user_login")
+
+    else:
+        form = BookingForm()
+    return render(request, "patient_dashboard.html", {"form": form})
 
 
 
