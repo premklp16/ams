@@ -5,7 +5,7 @@
       <a href="{% url 'index' %}" class="logo d-flex align-items-center me-auto me-xl-0">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="{% static 'patient/img/logo.webp' %}" alt=""> -->
-        <h1 class="sitename">Medi<span>Nest</span></h1>
+        <h1 class="sitename">Harish <span>Hospital</span></h1>
       </a>
 
       <nav id="navmenu" class="navmenu">
@@ -45,12 +45,12 @@
               <li><a href="#">Dropdown 4</a></li>
             </ul>
           </li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="{% url 'get_login' %}">Login</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
-      <a class="btn-getstarted" href="apointment.html">Apointment</a>
+      <a class="btn-getstarted" href="apointment.html">Appointment</a>
 
     </div>
   </header>

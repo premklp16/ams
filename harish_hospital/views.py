@@ -22,7 +22,7 @@ def register(request):
             user.set_password(form.cleaned_data['password'])
             user.save()
             messages.success(request, "Registration successful!")
-            return redirect("user_login")
+            return redirect("login")
         else:
             messages.error(request, "Please correct the errors below.")
     else:
@@ -32,7 +32,6 @@ def register(request):
 def get_login(request):
     if request.method == "POST":
         form = UserLoginForm(request.POST)
-
         if form.is_valid():
             phone = form.cleaned_data['phone_number']
             password = form.cleaned_data['password']
@@ -46,9 +45,9 @@ def get_login(request):
                 if user.role == "doctor":
                     return render(request, 'doctor/dashboard.html')
                 elif user.role == "patient":
-                    return render(request, 'patient/dashboard.html')
+                    return redirect("patient_dashboard")
                 else:
-                    return render(request, 'admin/dashboard.html')
+                    return redirect("admin_dashboard")
 
                 # return render(request, 'role_selection.html') # change to your homepage
             else:
@@ -57,11 +56,20 @@ def get_login(request):
 
     else:
         form = UserLoginForm()
+        print("first")
 
     return render(request, "patient_login.html", {"form": form})
 
+# @login_required
+# def admin_dashboard(request):
+#     return render(request, 'admin/dashboard.html')
+
+
+
+
 @login_required
 def patient_dashboard(request):
+    print("Method :", request.method)
     if request.method == "POST":
         doctors = CustomUser.objects.filter(role="doctor")
         form = BookingForm(request.POST)
@@ -96,13 +104,11 @@ def patient_dashboard(request):
             timeslot.save()
 
             messages.success(request, "Appointment booked successfully!")
-            return redirect("user_login")
+            return redirect("login")
 
     else:
         form = BookingForm()
-    return render(request, "patient_dashboard.html", {"form": form})
-
-
+    return render(request, "patient/dashboard.html", {"form": form})
 
 
 

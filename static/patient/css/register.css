@@ -1,0 +1,95 @@
+/* Page background */
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f5f5f5;
+}
+
+/* Centered card like the login form */
+.auth-wrapper {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-card {
+    background-color: #ffffff;
+    padding: 32px 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 420px;
+}
+
+/* Title */
+.auth-card h1 {
+    margin: 0 0 24px;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+/* Labels and form rows */
+.auth-card label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.form-row {
+    margin-bottom: 16px;
+}
+
+/* Inputs and select styled like login fields */
+.auth-card input[type="text"],
+.auth-card input[type="email"],
+.auth-card input[type="tel"],
+.auth-card input[type="password"],
+.auth-card select {
+    width: 100%;
+    padding: 10px 14px;
+    font-size: 14px;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.auth-card input:focus,
+.auth-card select:focus {
+    border-color: #009688;          /* teal */
+    box-shadow: 0 0 0 2px rgba(0, 150, 136, 0.2);
+}
+
+/* Register button matching login button */
+.auth-card button[type="submit"] {
+    width: 100%;
+    margin-top: 8px;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 8px;
+    background-color: #009688;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.auth-card button[type="submit"]:hover {
+    background-color: #00796b;
+    box-shadow: 0 3px 8px rgba(0, 121, 107, 0.4);
+}
+
+/* Small screens */
+@media (max-width: 480px) {
+    .auth-card {
+        margin: 0 16px;
+        padding: 24px 20px;
+    }
+}

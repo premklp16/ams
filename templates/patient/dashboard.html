@@ -1,10 +1,24 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Book Appointment</title>
+    <link rel="stylesheet" href="{% static 'patient/css/book.css' %}">
 </head>
 <body>
-<h1>Patient</h1>
+
+<div class="card">
+    <h2>Book Appointment</h2>
+
+    <form action="{% url 'patient_dashboard' %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">
+            Book
+        </button>
+    </form>
+</div>
+
 </body>
 </html>

@@ -55,7 +55,7 @@
               <div class="emergency-contact mt-4" data-aos="fade-up" data-aos-delay="350">
                 <div class="emergency-card p-3">
                   <h6 class="mb-2"><i class="bi bi-telephone-fill me-2"></i>Emergency Hotline</h6>
-                  <p class="mb-0">Call <strong>+1 (555) 911-4567</strong> for urgent medical assistance</p>
+                  <p class="mb-0">Call <strong>9043890799</strong> for urgent medical assistance</p>
                 </div>
               </div>
 
@@ -65,29 +65,20 @@
           <!-- Appointment Form -->
           <div class="col-lg-6">
             <div class="appointment-form-wrapper" data-aos="fade-up" data-aos-delay="200">
-              <form action="forms/appointment.php" method="post" class="appointment-form php-email-form">
-                <div class="row gy-3">
+              <form action="{% url 'get_login' %}" method="POST" class="appointment-form">
+                  {% csrf_token %}
 
-                  <div class="col-md-6">
-                    <input type="text" name="name" class="form-control" placeholder="Your Full Name" required="">
-                  </div>
+                  {{ form.as_p }}
 
-                  <div class="col-md-6">
-                    <input type="email" name="email" class="form-control" placeholder="Your Email" required="">
-                  </div>
-
-                  <div class="col-12">
-                    <div class="loading">Loading</div>
-                    <div class="error-message"></div>
-                    <div class="sent-message">Your appointment request has been sent successfully. We will contact you shortly!</div>
-
-                    <button type="submit" class="btn btn-appointment w-100">
-                      <i class="bi bi-calendar-plus me-2"></i>Login
-                    </button>
-                  </div>
-
-                </div>
+                  <button type="submit" class="btn btn-appointment w-100">
+                    Login
+                  </button>
               </form>
+              <br>
+              <p>Don't have an account? </p>
+              <div class="register-button">
+                <a href="{% url 'register' %}">Register</a>
+              </div>
             </div>
           </div><!-- End Appointment Form -->
 
@@ -102,7 +93,7 @@
 
 
 
-<h2>Login</h2>
+<!-- <h2>Login</h2>
 
 <form method="POST">
 
@@ -110,7 +101,7 @@
     {{ form.as_p }}
 
     <button type="submit">Login</button>
-</form>
+</form> -->
 
 {% endblock %}
 
