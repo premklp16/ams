@@ -1,5 +1,7 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
+
+from ams.common.utils import create_or_edit_item
 from harish_hospital.forms import UserRegisterForm
 from harish_hospital.models import Booking, CustomUser, TimeSlot
 from django.shortcuts import render, redirect
@@ -23,5 +25,7 @@ def admin_patients(request):
     patients = CustomUser.objects.filter(role='patient')
     return render(request, 'admin/patients.html', {"patients": patients})
 
-
-
+@login_required
+def admin_add_doctor(request, pk=None):
+    return create_or_edit_item(request, CustomUser, UserRegisterForm, 'admin/add_doctor.html', pk,
+                               'admin_doctors')

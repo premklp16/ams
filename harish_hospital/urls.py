@@ -15,5 +15,7 @@ urlpatterns = [
         path('admin-dashboard/', admin_views.admin_dashboard, name="admin_dashboard"),
         path('admin-doctors/', admin_views.admin_doctors, name="admin_doctors"),
         path('admin-patients/', admin_views.admin_patients, name="admin_patients"),
+        path('admin-patient/add/', admin_views.admin_add_doctor, name='admin_add_doctor'),
+        # path('post-donation-detail/edit/<uuid:pk>/', views.create_or_edit_post_donation_detail, name='edit_post_donation_detail'),
         
         ]
