@@ -83,6 +83,11 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     class Meta:
         db_table = 'users'
 
+class Doctor(CustomUser):
+    department = models.CharField(max_length= 30)
+    description = models.CharField(max_length= 100)
+    experience = models.PositiveIntegerField(default=0)
+    education = models.CharField(max_length= 30)
 
 class TimeSlot(models.Model):
     # Time slot details of a particular doctor

@@ -27,7 +27,7 @@ def register(request):
             messages.error(request, "Please correct the errors below.")
     else:
         form = UserRegisterForm()
-    return render(request, "patient_register.html", {"form": form})
+    return render(request, "register.html", {"form": form})
 
 def get_login(request):
     if request.method == "POST":
@@ -52,13 +52,13 @@ def get_login(request):
                 # return render(request, 'role_selection.html') # change to your homepage
             else:
                 messages.error(request, "Invalid phone number or password")
-                return render(request, "patient_login.html", {"form": form})
+                return render(request, "login.html", {"form": form})
 
     else:
         form = UserLoginForm()
         print("first")
 
-    return render(request, "patient_login.html", {"form": form})
+    return render(request, "login.html", {"form": form})
 
 # @login_required
 # def admin_dashboard(request):

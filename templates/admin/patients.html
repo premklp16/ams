@@ -1,0 +1,60 @@
+{% extends 'admin/layout/_base.html' %}
+ {% load static %}
+{% block header %}
+
+{% endblock %}
+
+{% block content %}
+
+ <div class="content-wrapper">
+            <div class="page-header">
+              <h3 class="page-title"> Patients </h3>
+                
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <!-- <li class="breadcrumb-item"><a href="#">Tables</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Basic tables</li> -->
+                  <a  >
+                  <button type="button" class="btn btn-gradient-primary btn-fw">Add Patients</button>
+                </a>
+                </ol>
+              </nav>
+            </div>
+            <div class="row">
+              <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <!-- <h4 class="card-title">Basic Table</h4>
+                    <p class="card-description"> Add class <code>.table</code>
+                    </p> -->
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>Name</th>
+                          <th>Email</th>
+                          <!-- <th>Description</th> -->
+                          <th>Phone</th>
+                          <th>Active</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for patient in patients %}
+                        <tr>
+                          <td>{{patient.name}}</td>
+                          <td>{{patient.email}}</td>
+                          <!-- <td>{{patient.description}}</td> -->
+                          <td>{{patient.phone_number}}</td>
+                          <td><label class="badge badge-danger">{{patient.is_active}}</label></td>
+                        </tr>
+                      {% endfor %}
+                        
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+{% endblock %}
+
+{% block javascript %}
+
+ {% endblock %}

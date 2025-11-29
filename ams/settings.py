@@ -79,9 +79,9 @@ AUTHENTICATION_BACKENDS = [
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'ams_dev',
+        'NAME': 'ams_dev1',
         'USER': 'postgres',
-        'PASSWORD': 'ait123',
+        'PASSWORD': 'prem2626',
         'HOST': 'localhost',
         'PORT': '5432',
     }

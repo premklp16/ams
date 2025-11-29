@@ -5,13 +5,33 @@
 {% endblock %}
 
 {% block content %}
-<form method="POST">
+<!-- <form method="POST">
             {% csrf_token %}
             {{ form.as_p }}
 
             <button type="submit">Submit</button>
+        </form> -->
+<div class="row">
+  <div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Add Doctor</h4><br>
+        <!-- <p class="card-description">Basic form layout</p> -->
+
+        <form class="forms-sample" method="POST">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <div class="form-check form-check-flat form-check-primary">
+            <label class="form-check-label">
+            </label>
+          </div>
+          <button type="submit" class="btn btn-gradient-primary me-2">Submit</button>
         </form>
 
+      </div>
+    </div>
+  </div>
+</div>        
 {% endblock %}
 
 {% block javascript %}

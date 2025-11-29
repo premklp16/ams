@@ -1,5 +1,5 @@
 from django import forms
-from harish_hospital.models import CustomUser, TimeSlot
+from harish_hospital.models import CustomUser, Doctor, TimeSlot
 
 class UserRegisterForm(forms.ModelForm):
     password = forms.CharField(
@@ -79,3 +79,19 @@ class BookingForm(forms.Form):
         widget=forms.Select(attrs={"class": "form-control"}),
         required=True
     )
+
+class DoctorRegisterForm(forms.ModelForm):
+    class Meta:
+        model = Doctor
+        fields = ["name", "email", "phone_number", "password", "department", "description", "experience", "education"]
+
+        widgets = {
+            "name": forms.TextInput(attrs={"class": "form-control", "placeholder": "Full Name"}),
+            "email": forms.EmailInput(attrs={"class": "form-control", "placeholder": "Email"}),
+            "phone_number": forms.TextInput(attrs={"class": "form-control", "placeholder": "Phone Number"}),
+            "password": forms.PasswordInput(attrs={"class": "form-control", "placeholder": "Password"}),
+            "department": forms.TextInput(attrs={"class": "form-control", "placeholder": "Department"}),
+            "description": forms.TextInput(attrs={"class": "form-control", "placeholder": "Description"}),
+            "experience": forms.TextInput(attrs={"class": "form-control", "placeholder": "Experience"}),
+            "education": forms.TextInput(attrs={"class": "form-control", "placeholder": "Education"}),
+        }

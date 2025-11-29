@@ -6,15 +6,18 @@
 {% endblock %}
 
 {% block content %}
-{{doctors}}
+
  <div class="content-wrapper">
             <div class="page-header">
-              <h3 class="page-title"> Basic Tables </h3>
-                <a href="{%  url 'admin_add_doctor' %}" >Add doctor</a>
+              <h3 class="page-title"> Doctors </h3>
+                
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="#">Tables</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Basic tables</li>
+                  <!-- <li class="breadcrumb-item"><a href="#">Tables</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Basic tables</li> -->
+                  <a href="{%  url 'admin_add_doctor' %}" >
+                  <button type="button" class="btn btn-gradient-primary btn-fw">Add Doctor</button>
+                </a>
                 </ol>
               </nav>
             </div>
@@ -22,26 +25,30 @@
               <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Basic Table</h4>
+                    <!-- <h4 class="card-title">Basic Table</h4>
                     <p class="card-description"> Add class <code>.table</code>
-                    </p>
+                    </p> -->
                     <table class="table">
                       <thead>
                         <tr>
-                          <th>Profile</th>
-                          <th>VatNo.</th>
-                          <th>Created</th>
-                          <th>Status</th>
+                          <th>Name</th>
+                          <th>Department</th>
+                          <th>Description</th>
+                          <th>Phone</th>
+                          <th>Active</th>
                         </tr>
                       </thead>
                       <tbody>
+                      {% for doctor in doctors %}
                         <tr>
-                          <td>Jacob</td>
-                          <td>53275531</td>
-                          <td>12 May 2017</td>
-                          <td><label class="badge badge-danger">Pending</label></td>
+                          <td>{{doctor.name}}</td>
+                          <td>{{doctor.department}}</td>
+                          <td>{{doctor.description}}</td>
+                          <td>{{doctor.phone_number}}</td>
+                          <td><label class="badge badge-danger">{{doctor.is_active}}</label></td>
                         </tr>
-                        <tr>
+                      {% endfor %}
+                        <!-- <tr>
                           <td>Messsy</td>
                           <td>53275532</td>
                           <td>15 May 2017</td>
@@ -64,7 +71,7 @@
                           <td>53275535</td>
                           <td>20 May 2017</td>
                           <td><label class="badge badge-warning">In progress</label></td>
-                        </tr>
+                        </tr> -->
                       </tbody>
                     </table>
                   </div>
