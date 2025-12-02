@@ -1,9 +1,10 @@
+from datetime import date, timedelta
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
 from harish_hospital.forms import UserRegisterForm
-from harish_hospital.models import Booking, CustomUser, TimeSlot
+from harish_hospital.models import Booking, CustomUser, Doctor, TimeSlot
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import BookingForm, UserLoginForm
 
@@ -43,7 +44,7 @@ def get_login(request):
                 print("user", user.role)
                 messages.success(request, "Login successful!")
                 if user.role == "doctor":
-                    return render(request, 'doctor/dashboard.html')
+                    return redirect("doctor_dashboard")
                 elif user.role == "patient":
                     return redirect("patient_dashboard")
                 else:
@@ -60,57 +61,61 @@ def get_login(request):
 
     return render(request, "login.html", {"form": form})
 
-# @login_required
-# def admin_dashboard(request):
-#     return render(request, 'admin/dashboard.html')
-
-
 
 
 @login_required
 def patient_dashboard(request):
-    print("Method :", request.method)
+    doctors = Doctor.objects.all()
+    timeslots = TimeSlot.objects.all()
+
+    # Prepare department choices
+    departments = Doctor.objects.values_list("department", flat=True).distinct()
+    department_choices = [(d, d) for d in departments]
+
+    form = BookingForm()
+    form.fields["department"].choices = department_choices
+
+    # IMPORTANT FIX: load all doctors and timeslots into form for JS filtering
+    form.fields["doctor"].queryset = doctors
+    form.fields["timeslot"].queryset = timeslots
+
     if request.method == "POST":
-        doctors = CustomUser.objects.filter(role="doctor")
         form = BookingForm(request.POST)
-
+        form.fields["department"].choices = department_choices
+        form.fields["doctor"].queryset = doctors
+        form.fields["timeslot"].queryset = timeslots
+        print("Form errors:", form.errors)
         if form.is_valid():
-            doctor_id = form.cleaned_data["doctor"]
-            timeslot_id = form.cleaned_data["timeslot"]
-            description = form.cleaned_data["description"]
+            doctor = form.cleaned_data["doctor"]
+            slot = form.cleaned_data["timeslot"]
+            description=form.cleaned_data["description"]
 
-            if not doctor_id or not timeslot_id:
-                messages.error(request, "Please select doctor and timeslot.")
-                return redirect("book_appointment")
+            # Mark slot booked
+            slot.is_booked = True
+            slot.save()
 
-            doctor = get_object_or_404(CustomUser, id=doctor_id, role="doctor")
-            timeslot = get_object_or_404(TimeSlot, id=timeslot_id, doctor=doctor)
-
-            # Check if slot already booked
-            if timeslot.is_booked:
-                messages.error(request, "This timeslot is already booked.")
-                return redirect("register")
-
-            # Create booking
-            Booking.objects.create(
-                patient=request.user,   # logged-in patient
+            # Save booking
+            book_obj = Booking.objects.create(
+                patient=request.user,
                 doctor=doctor,
-                timeslot=timeslot,
-                description=description
+                timeslot=slot,
+                description=description,
             )
+            return redirect("booking_success", bookid=book_obj.id)
 
-            # Mark timeslot as booked
-            timeslot.is_booked = True
-            timeslot.save()
+    return render(request, "patient/dashboard.html", {
+        "form": form,
+        "doctors": doctors,
+        "timeslots": timeslots,
+    })
 
-            messages.success(request, "Appointment booked successfully!")
-            return redirect("login")
+def booking_success(request, bookid):
+    book = Booking.objects.get(id=bookid)
+    return render(request, "patient/booking_success.html", {"book": book})
 
-    else:
-        form = BookingForm()
-    return render(request, "patient/dashboard.html", {"form": form})
-
-
+def logout_user(request):
+    logout(request)
+    return redirect('index')
 
 
 

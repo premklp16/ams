@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Doctor Profile</title>
+<link rel="stylesheet" href="{% static 'doctor/css/profile.css' %}">
+</head>
+
+<body>
+
+<header>
+  <h1>Doctor Profile</h1>
+
+  <div class="nav-buttons">
+    <a href="{% url 'doctor_dashboard' %}">Dashboard</a>
+    <a href="{% url 'logout_user' %}">Logout</a>
+  </div>
+</header>
+
+<div class="profile-card">
+  <div class="profile-header">
+    <h2>Dr. {{ doctor.name }}</h2>
+    <p><strong>Department:</strong> {{ doctor.department }}</p>
+  </div>
+
+  <div class="profile-details">
+
+    <p><strong>Email:</strong> {{ doctor.email }}</p>
+
+    <p><strong>Phone Number:</strong> {{ doctor.phone_number }}</p>
+
+    <p><strong>Experience:</strong> {{ doctor.experience }} years</p>
+
+    <p><strong>Education:</strong> {{ doctor.education }}</p>
+
+    <p><strong>Description:</strong> {{ doctor.description }}</p>
+
+  </div>
+</div>
+
+</body>
+</html>

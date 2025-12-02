@@ -1,10 +1,52 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Doctor Dashboard</title>
+<link rel="stylesheet" href="{% static 'doctor/css/main.css' %}">
 </head>
 <body>
-<h1>Doctor</h1>
+
+<header>
+  <h1>Welcome Dr. {{ doctor.name }}</h1>
+
+  <div class="nav-buttons">
+    <a href="{% url 'doctor_profile' %}">Profile</a>
+    <a href="{% url 'logout_user' %}">Logout</a>
+  </div>
+</header>
+
+<main>
+  <table>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Patient Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for book in bookings %}
+      <tr>
+        <td>{{ book.timeslot.date }}</td>
+        <td>{{ book.timeslot.time }}</td>
+        <td>{{ book.patient.name }}</td>
+        <td>{{ book.description }}</td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="4" style="text-align:center;">No Appointments Yet</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</main>
+
+</body>
+
 </body>
 </html>

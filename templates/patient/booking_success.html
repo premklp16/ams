@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Booking Successful</title>
+    <link rel="stylesheet" href="{% static 'patient/css/success.css' %}">
+</head>
+
+<body>
+
+<div class="success-card">
+    <h2>Appointment Booked Successfully! </h2>
+
+    <div class="details-box">
+        <p><strong>Patient Name:</strong> {{ book.patient.name }}</p>
+        <p><strong>Email:</strong> {{ book.patient.email }}</p>
+        <p><strong>Phone:</strong> {{ book.patient.phone_number }}</p>
+        <p><strong>Doctor:</strong> Dr. {{ book.doctor.name }}</p>
+        <p><strong>Department:</strong> {{ book.doctor.doctor.department }}</p>
+        <p><strong>Date:</strong> {{ book.timeslot.date }}</p>
+        <p><strong>Time:</strong> {{ book.timeslot.time }}</p>
+    </div>
+
+    <p class="success-msg">Your appointment has been booked successfully.</p>
+
+    <a href="{% url 'logout_user' %}" class="logout-btn">Logout</a>
+</div>
+
+</body>
+</html>

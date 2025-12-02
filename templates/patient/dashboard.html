@@ -5,19 +5,69 @@
     <meta charset="UTF-8">
     <title>Book Appointment</title>
     <link rel="stylesheet" href="{% static 'patient/css/book.css' %}">
+    <script src="{% static 'patient/js/book.js' %}"></script>
 </head>
 <body>
 
 <div class="card">
-    <h2>Book Appointment</h2>
-
+    <!-- <h2>Book Appointment</h2>
     <form action="{% url 'patient_dashboard' %}" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">
             Book
         </button>
-    </form>
+    </form> -->
+    <h2>Book Appointment</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.name.label }}<br>
+    {{ form.name }}<br><br>
+
+    {{ form.email.label }}<br>
+    {{ form.email }}<br><br>
+
+    {{ form.phone.label }}<br>
+    {{ form.phone }}<br><br>
+
+    {{ form.description.label }}<br>
+    {{ form.description }}<br><br>
+
+    {{ form.department.label }}<br>
+    {{ form.department }}<br><br>
+
+    {{ form.doctor.label }}<br>
+    <select name="doctor" id="id_doctor" class="form-control">
+        <option value="">Select Doctor</option>
+            {% for doc in doctors %}
+        <option value="{{ doc.customuser_ptr_id }}" data-dept="{{ doc.department }}">
+        {{ doc.name }}
+        </option>
+
+            {% endfor %}
+    </select><br><br>
+
+    {{ form.date.label }}<br>
+    <input type="date" id="date" name="date"><br><br>
+
+    {{ form.timeslot.label }}<br>
+    <select name="timeslot" id="id_timeslot" class="form-control">
+    <option value="">Select Timeslot</option>
+        {% for slot in timeslots %}
+            <option value="{{ slot.id }}"
+                data-doctor="{{ slot.doctor.id }}"
+                data-date="{{ slot.date|date:'Y-m-d' }}"
+                data-booked="{{ slot.is_booked }}">
+        {{ slot.time }}
+    </option>
+
+    {% endfor %}
+    </select><br><br>
+
+
+    <button type="submit">Book</button>
+</form>
 </div>
 
 </body>

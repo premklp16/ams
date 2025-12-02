@@ -25926,13 +25926,13 @@ dl li {
 
 @media (min-width: 992px) {
   .sidebar-mini .navbar .navbar-brand-wrapper {
-    width: 185px;
+    width: 160px;
   }
   .sidebar-mini .navbar .navbar-menu-wrapper {
-    width: calc(100% - 185px);
+    width: calc(100% - 160px);
   }
   .sidebar-mini .sidebar {
-    width: 185px;
+    width: 160px;
   }
   .sidebar-mini .sidebar .nav .nav-item {
     padding: 0;
@@ -25986,7 +25986,7 @@ dl li {
     content: "\f0143";
   }
   .sidebar-mini .main-panel {
-    width: calc(100% - 185px);
+    width: calc(100% - 160px);
   }
   .sidebar-mini:not(.sidebar-icon-only) .sidebar .nav:not(.sub-menu) > .nav-item {
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);

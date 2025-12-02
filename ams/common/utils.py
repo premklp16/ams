@@ -1,6 +1,7 @@
 import os
 from django.forms import ValidationError
 from django.shortcuts import get_object_or_404, redirect, render
+from harish_hospital.timeslots import generate_timeslots
 
 
 def validate_file_extension(value):
@@ -20,6 +21,8 @@ def create_or_edit_item(request, model, form_class, template_name, role, pk=None
             user.set_password(form.cleaned_data['password'])
             user.role = role
             user.save()
+            if user.role == 'doctor':
+                generate_timeslots(user)
             return redirect(redirect_to)
         else:
             print(form.errors)

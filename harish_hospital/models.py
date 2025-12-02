@@ -1,4 +1,4 @@
-from datetime import timezone
+from datetime import date, timedelta, timezone
 from django.db import models
 import uuid
 from django.utils import timezone
@@ -78,7 +78,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     REQUIRED_FIELDS = []
 
     def __str__(self):
-        return self.phone_number
+        return self.name
 
     class Meta:
         db_table = 'users'
@@ -88,6 +88,9 @@ class Doctor(CustomUser):
     description = models.CharField(max_length= 100)
     experience = models.PositiveIntegerField(default=0)
     education = models.CharField(max_length= 30)
+
+    def __str__(self):
+        return self.department
 
 class TimeSlot(models.Model):
     # Time slot details of a particular doctor
