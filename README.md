@@ -58,7 +58,8 @@ Getting into the project:
    <img width="1896" height="863" alt="Screenshot 2025-12-05 144207" src="https://github.com/user-attachments/assets/65cc890e-2f4c-484c-8dbb-cfa9e132245b" />
 
    And also admin can view, add and deactivate doctors and patient
-   <img width="1884" height="863" alt="Screenshot 2025-12-05 144221" src="https://github.com/user-attachments/assets/83f377fd-ebeb-4eec-afff-09c218752782" />
+   <img width="1866" height="819" alt="image" src="https://github.com/user-attachments/assets/16ea54ea-fb04-4a58-9b2b-5e93f3c40ed5" />
+
  
  
 
