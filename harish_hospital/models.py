@@ -1,36 +1,29 @@
-from datetime import date, timedelta, timezone
+from datetime import timezone
 from django.db import models
-import uuid
 from django.utils import timezone
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.utils.translation import gettext_lazy as _
 import uuid
 from django.core.validators import RegexValidator
-
 from ams.common.utils import validate_file_extension
 
-# Create your models here.
 
-# class Patient(models.Model):
-#     # General user details
-#     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-#     role = models.CharField(max_length= 8)
-#     name = models.CharField(max_length= 30)
-#     age = models.PositiveIntegerField(default= 0)
-#     gender = models.CharField(max_length= 8)
-#     phone = models.PositiveIntegerField(default=0)
-#     email = models.EmailField(blank=True, null=True)
-#     password = models.CharField(max_length= 20)
-#     is_active = models.BooleanField(default=True)
+"""
+Models for storing user details, doctor specific details, timeslot details, booking details
+"""
 
-#     # patient only
-#     description = models.CharField(max_length= 100)
-#     department = models.CharField(max_length= 20, null= True)
 class CustomUserManager(BaseUserManager):
+    """
+    Custom manager for creating users and superusers
+
+    Methods:
+    - create_user(): Creates a normal user with phone_number as username
+    - create_superuser(): Creates admin with is_staff and is_superuser permissions
+    """
+    
     def create_user(self, phone_number, password=None, role='patient', **extra_fields):
         if not phone_number:
             raise ValueError('The phone_number field must be set')
-        # phone_number = self.normalize_phone_number(phone_number)
         user = self.model(phone_number=phone_number, role=role, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
@@ -43,10 +36,15 @@ class CustomUserManager(BaseUserManager):
 
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
+    """
+    Custom user model replacing Django's default user
+    
+    - Uses phone_number as USERNAME_FIELD
+    - Supports roles like 'patient' or 'doctor'
+    """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     is_alpha_validator = RegexValidator(r'^[a-zA-Z]', message='name must be alphabet')
     name = models.CharField(max_length=30, blank=True, null=True, validators=[is_alpha_validator])
-    # last_name = models.CharField(max_length=30, blank=True, null=True, validators=[is_alpha_validator])
     email = models.EmailField(unique=True, blank=True, null=True)
     phone_regex = RegexValidator(regex=r'^\+?1?\d{14,14}$',
                                  message="Phone number must be entered Up to 14 digits allowed")
@@ -84,6 +82,15 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         db_table = 'users'
 
 class Doctor(CustomUser):
+    """
+    Doctor model extends CustomUser
+    
+    Additional fields:
+    - department: Doctor's specialization
+    - description: Short bio
+    - experience: Years of experience
+    - education: Education background
+    """
     department = models.CharField(max_length= 30)
     description = models.CharField(max_length= 100)
     experience = models.PositiveIntegerField(default=0)
@@ -93,7 +100,9 @@ class Doctor(CustomUser):
         return self.department
 
 class TimeSlot(models.Model):
-    # Time slot details of a particular doctor
+    """
+    Stores timeslot details for each doctor
+    """
     doctor = models.ForeignKey(CustomUser, on_delete= models.CASCADE, limit_choices_to= {'role': 'doctor'})
     date = models.DateField()
     time = models.CharField(max_length=20)  
@@ -101,8 +110,12 @@ class TimeSlot(models.Model):
 
 
 class Booking(models.Model):
-    # Which patient booked which doctor and timeslot
+    """
+    Stores an appointment booking details between doctor and patient
+    """
+    id = models.UUIDField(primary_key=True,default=uuid.uuid4, unique=True, editable=False)
     patient = models.ForeignKey(CustomUser, on_delete= models.CASCADE, limit_choices_to= {'role':'patient'}, related_name='patient_bookings')
     doctor = models.ForeignKey(CustomUser, on_delete= models.CASCADE, limit_choices_to= {'role':'doctor'}, related_name='doctor_bookings')
     timeslot = models.ForeignKey(TimeSlot, on_delete= models.CASCADE)
     description = models.TextField(blank=True, null=True)
+    

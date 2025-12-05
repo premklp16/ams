@@ -52,4 +52,5 @@ document.addEventListener("DOMContentLoaded", () => {
                               !booked);
         });
     }
+     deptSelect.dispatchEvent(new Event("change"));
 });

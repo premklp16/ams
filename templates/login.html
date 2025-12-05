@@ -1,11 +1,10 @@
 {% extends 'patient/layout/base.html' %}
- {% load static %}
+{% load static %}
 {% block header %}
 
 {% endblock %}
 
 {% block content %}
-    <!-- Page Title -->
     <div class="page-title">
       <div class="heading">
        <section id="appointmnet" class="appointmnet section">
@@ -14,7 +13,6 @@
 
         <div class="row gy-4">
 
-          <!-- Appointment Info -->
           <div class="col-lg-6">
             <div class="appointment-info">
               <h3>Quick &amp; Easy Online Booking</h3>
@@ -29,7 +27,7 @@
                     <h5>Flexible Scheduling</h5>
                     <p class="mb-0">Choose from available time slots that fit your busy schedule</p>
                   </div>
-                </div><!-- End Info Item -->
+                </div>
 
                 <div class="info-item d-flex align-items-center mb-3" data-aos="fade-up" data-aos-delay="250">
                   <div class="icon-wrapper me-3">
@@ -39,7 +37,7 @@
                     <h5>Quick Response</h5>
                     <p class="mb-0">Get confirmation within 15 minutes of submitting your request</p>
                   </div>
-                </div><!-- End Info Item -->
+                </div>
 
                 <div class="info-item d-flex align-items-center mb-3" data-aos="fade-up" data-aos-delay="300">
                   <div class="icon-wrapper me-3">
@@ -49,7 +47,7 @@
                     <h5>Expert Medical Care</h5>
                     <p class="mb-0">Board-certified doctors and specialists at your service</p>
                   </div>
-                </div><!-- End Info Item -->
+                </div>
               </div>
 
               <div class="emergency-contact mt-4" data-aos="fade-up" data-aos-delay="350">
@@ -60,19 +58,19 @@
               </div>
 
             </div>
-          </div><!-- End Appointment Info -->
+          </div>
 
-          <!-- Appointment Form -->
           <div class="col-lg-6">
             <div class="appointment-form-wrapper" data-aos="fade-up" data-aos-delay="200">
               <form action="{% url 'get_login' %}" method="POST" class="appointment-form">
                   {% csrf_token %}
-
+                  <h2>Patient Login</h2><br>
                   {{ form.as_p }}
-
+                  <b>{{ message }}<b><br>
                   <button type="submit" class="btn btn-appointment w-100">
                     Login
                   </button>
+                  
               </form>
               <br>
               <p>Don't have an account? </p>
@@ -80,31 +78,16 @@
                 <a href="{% url 'register' %}">Register</a>
               </div>
             </div>
-          </div><!-- End Appointment Form -->
-
+          </div>
         </div>
-
       </div>
-
     </section>
-      </div>
-
-    </div><!-- End Page Title -->
-
-
-
-<!-- <h2>Login</h2>
-
-<form method="POST">
-
-    {% csrf_token %}
-    {{ form.as_p }}
-
-    <button type="submit">Login</button>
-</form> -->
+    </div>
+    </div>
 
 {% endblock %}
 
 {% block javascript %}
 
- {% endblock %}
+{% endblock %}
+

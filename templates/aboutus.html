@@ -1,11 +1,11 @@
 {% extends 'patient/layout/base.html' %}
- {% load static %}
+{% load static %}
 {% block header %}
 
 {% endblock %}
 
 {% block content %}
-    <!-- About Section -->
+
     <section id="about" class="about section">
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -24,11 +24,11 @@
             <div class="col-lg-7" data-aos="fade-right" data-aos-delay="200">
               <div class="image-gallery">
                 <div class="main-image-container">
-                  <img src="assets/img/health/facilities-3.webp" class="img-fluid main-image" alt="Medical facility">
+                  <img src="{% static 'patient/img/health/facilities-3.webp' %}" class="img-fluid main-image" alt="Medical facility">
                 </div>
                 <div class="secondary-images">
-                  <img src="assets/img/health/staff-12.webp" class="img-fluid secondary-image" alt="Medical team" data-aos="zoom-in" data-aos-delay="400">
-                  <img src="assets/img/health/consultation-4.webp" class="img-fluid secondary-image" alt="Patient consultation" data-aos="zoom-in" data-aos-delay="500">
+                  <img src="{% static 'patient/img/health/staff-12.webp' %}" class="img-fluid secondary-image" alt="Medical team" data-aos="zoom-in" data-aos-delay="400">
+                  <img src="{% static 'patient/img/health/consultation-4.webp' %}" class="img-fluid secondary-image" alt="Patient consultation" data-aos="zoom-in" data-aos-delay="500">
                 </div>
               </div>
             </div>
@@ -36,7 +36,7 @@
             <div class="col-lg-5" data-aos="fade-left" data-aos-delay="300">
               <div class="stats-content">
                 <h3>Trusted Healthcare Provider</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+                <p>We are your trusted partner in quality health care, committed to providing reliable and compassionate services. Our team delivers expert medical support with a focus on safety, comfort, and well-being. With a patient-first approach, we ensure every individual receives the care they deserve. You can always count on us for dependable and dedicated health care solutions.</p>
 
                 <div class="stats-list">
                   <div class="stat-row">
@@ -125,7 +125,7 @@
             </div>
             <div class="col-lg-2 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="150">
               <div class="specialty-item">
-                <i class="bi bi-brain"></i>
+                <i class="fa-solid fa-brain"></i>
                 <span>Neurology</span>
               </div>
             </div>
@@ -168,22 +168,22 @@
             <div class="col-lg-8">
               <div class="accreditation-grid">
                 <div class="accreditation-item" data-aos="fade-up" data-aos-delay="100">
-                  <img src="assets/img/clients/clients-6.webp" class="img-fluid" alt="Healthcare accreditation">
+                  <img src="{% static 'patient/img/clients/clients-6.webp' %}" class="img-fluid" alt="Healthcare accreditation">
                 </div>
                 <div class="accreditation-item" data-aos="fade-up" data-aos-delay="150">
-                  <img src="assets/img/clients/clients-7.webp" class="img-fluid" alt="Medical certification">
+                  <img src="{% static 'patient/img/clients/clients-7.webp' %}" class="img-fluid" alt="Medical certification">
                 </div>
                 <div class="accreditation-item" data-aos="fade-up" data-aos-delay="200">
-                  <img src="assets/img/clients/clients-8.webp" class="img-fluid" alt="Quality assurance">
+                  <img src="{% static 'patient/img/clients/clients-8.webp' %}" class="img-fluid" alt="Quality assurance">
                 </div>
                 <div class="accreditation-item" data-aos="fade-up" data-aos-delay="250">
-                  <img src="assets/img/clients/clients-9.webp" class="img-fluid" alt="Healthcare excellence">
+                  <img src="{% static 'patient/img/clients/clients-9.webp' %}" class="img-fluid" alt="Healthcare excellence">
                 </div>
                 <div class="accreditation-item" data-aos="fade-up" data-aos-delay="300">
-                  <img src="assets/img/clients/clients-10.webp" class="img-fluid" alt="Medical standards">
+                  <img src="{% static 'patient/img/clients/clients-10.webp' %}" class="img-fluid" alt="Medical standards">
                 </div>
                 <div class="accreditation-item" data-aos="fade-up" data-aos-delay="350">
-                  <img src="assets/img/clients/clients-11.webp" class="img-fluid" alt="Healthcare certification">
+                  <img src="{% static 'patient/img/clients/clients-11.webp' %}" class="img-fluid" alt="Healthcare certification">
                 </div>
               </div>
             </div>
@@ -192,14 +192,11 @@
 
       </div>
 
-    </section><!-- /About Section -->
+    </section>
 
 {% endblock %}
 
 {% block javascript %}
 
  {% endblock %}
-
-
-
 

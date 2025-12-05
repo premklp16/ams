@@ -1,0 +1,38 @@
+{% extends 'patient/layout/base.html' %}
+{% load static %}
+{% block header %}
+
+{% endblock %}
+
+{% block content %}
+    <div class="page-title">
+      <div class="heading">
+       <section id="appointmnet" class="appointmnet section">
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-lg-6">
+            <div class="appointment-form-wrapper" data-aos="fade-up" data-aos-delay="200">
+              <form action="{% url 'doctor_get_login' %}" method="POST" class="appointment-form">
+                  {% csrf_token %}
+                    <h2>Doctor Login</h2><br>
+                  {{ form.as_p }}
+                    <b>{{ message }}<b><br>
+                  <button type="submit" class="btn btn-appointment w-100">
+                    Login
+                  </button>
+              </form>
+              <br>
+            </div>
+          </div>
+        </div>
+      </div>
+       </section>
+      </div>
+    </div>
+
+{% endblock %}
+
+{% block javascript %}
+
+{% endblock %}
+

@@ -1,5 +1,5 @@
 {% extends 'admin/layout/_base.html' %}
- {% load static %}
+{% load static %}
 {% block header %}
 
 {% endblock %}
@@ -9,12 +9,8 @@
  <div class="content-wrapper">
             <div class="page-header">
               <h3 class="page-title"> Patients </h3>
-                
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                  <!-- <li class="breadcrumb-item"><a href="#">Tables</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Basic tables</li> -->
-                  
                 </ol>
               </nav>
             </div>
@@ -22,15 +18,11 @@
               <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <!-- <h4 class="card-title">Basic Table</h4>
-                    <p class="card-description"> Add class <code>.table</code>
-                    </p> -->
                     <table class="table">
                       <thead>
                         <tr>
                           <th>Name</th>
                           <th>Email</th>
-                          <!-- <th>Description</th> -->
                           <th>Phone</th>
                           <th>Active</th>
                         </tr>
@@ -40,12 +32,10 @@
                         <tr>
                           <td>{{patient.name}}</td>
                           <td>{{patient.email}}</td>
-                          <!-- <td>{{patient.description}}</td> -->
                           <td>{{patient.phone_number}}</td>
                           <td><label class="badge badge-danger">{{patient.is_active}}</label></td>
                         </tr>
                       {% endfor %}
-                        
                       </tbody>
                     </table>
                   </div>
@@ -56,3 +46,4 @@
 {% block javascript %}
 
  {% endblock %}
+

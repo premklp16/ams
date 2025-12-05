@@ -1,52 +1,77 @@
-body {
-    font-family: Arial, sans-serif;
-    background: #f7f9fc;
-    margin: 0;
-    padding: 0;
-  }
-  header {
-    background: #007bff;
-    color: white;
-    padding: 15px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  header h1 {
-    margin: 0;
-    font-size: 22px;
-  }
-  .nav-buttons a {
-    background: white;
-    color: #007bff;
-    text-decoration: none;
-    padding: 8px 15px;
-    margin-left: 10px;
-    font-weight: bold;
-    border-radius: 4px;
-  }
+  body {
+  font-family: Arial, sans-serif;
+  background: #f7f9fc;
+  margin: 0;
+  padding: 0;
+}
 
-  .nav-buttons a:hover {
-    background: #e0e7ff;
-  }
-  main {
-    padding: 20px;
-  }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    background: white;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  }
-  th, td {
-    text-align: left;
-    padding: 14px 20px;
-    border-bottom: 1px solid #ddd;
-  }
-  th {
-    background: #f1f5f9;
-    font-weight: 700;
-  }
-  tbody tr:hover {
-    background: #f9fafb;
-  }
+/* Header */
+header {
+  background: #007bff;
+  color: white;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header h1 {
+  margin: 0;
+  font-size: 22px;
+}
+.nav-buttons a {
+  background: white;
+  color: #007bff;
+  text-decoration: none;
+  padding: 8px 15px;
+  margin-left: 10px;
+  font-weight: bold;
+  border-radius: 4px;
+}
+.nav-buttons a:hover {
+  background: #e0e7ff;
+}
+
+/* Page layout */
+main {
+  padding: 20px;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-bottom: 40px;     /* Added space for second table */
+}
+th, td {
+  text-align: left;
+  padding: 14px 20px;
+  border-bottom: 1px solid #ddd;
+}
+th {
+  background: #f1f5f9;
+  font-weight: 700;
+}
+tbody tr:hover {
+  background: #f9fafb;
+}
+
+/* Section title for the new timeslot table */
+.section-title {
+  font-size: 20px;
+  margin: 30px 0 15px 0;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Badges for status */
+.badge-available {
+  color: #0f9d58;           /* Google green */
+  font-weight: bold;
+}
+
+.badge-booked {
+  color: #d93025;           /* Google red */
+  font-weight: bold;
+}

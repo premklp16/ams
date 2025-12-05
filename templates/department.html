@@ -1,0 +1,195 @@
+{% extends 'patient/layout/base.html' %}
+{% load static %}
+{% block header %}
+
+{% endblock %}
+
+{% block content %}
+
+    <section id="featured-departments" class="featured-departments section">
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Featured Departments</h2>
+        <p>Our Featured Departments showcase specialized medical services and expert care across multiple healthcare disciplines.</p>
+      </div>
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="departments-showcase">
+
+          <div class="featured-department" data-aos="fade-up" data-aos-delay="200">
+            <div class="row align-items-center">
+              <div class="col-lg-6 order-lg-1">
+                <div class="department-content">
+                  <div class="department-category">Emergency Medicine</div>
+                  <h2 class="department-title">24/7 Emergency Care Services</h2>
+                  <p class="department-description">Our emergency department provides immediate medical attention around the clock.Equipped with advanced facilities and skilled specialists, we handle urgent and critical cases efficiently.</p>
+                  <div class="department-features">
+                    <div class="feature-item">
+                      <i class="fas fa-check-circle"></i>
+                      <span>24/7 Emergency Response</span>
+                    </div>
+                    <div class="feature-item">
+                      <i class="fas fa-check-circle"></i>
+                      <span>Advanced Life Support</span>
+                    </div>
+                    <div class="feature-item">
+                      <i class="fas fa-check-circle"></i>
+                      <span>Trauma Care Specialists</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 order-lg-2">
+                <div class="department-visual">
+                  <div class="image-wrapper">
+                    <img src="{% static 'patient/img/health/emergency-3.webp' %}" alt="Emergency Department" class="img-fluid">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="departments-grid">
+            <div class="row">
+              <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                <div class="department-card">
+                  <div class="card-icon">
+                    <i class="fas fa-heartbeat"></i>
+                  </div>
+                  <div class="card-content">
+                    <h3 class="card-title">Cardiology</h3>
+                    <p class="card-description">Cardiology provides expert diagnosis and treatment for heart and blood vessel disorders to ensure optimal cardiac health.</p>
+                    <div class="card-stats">
+                      <div class="stat-item">
+                        <span class="stat-number">15+</span>
+                        <span class="stat-label">Specialists</span>
+                      </div>
+                      <div class="stat-item">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">Procedures</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="350">
+                <div class="department-card">
+                  <div class="card-icon">
+                    <i class="fas fa-brain"></i>
+                  </div>
+                  <div class="card-content">
+                    <h3 class="card-title">Neurology</h3>
+                    <p class="card-description">Neurology focuses on diagnosing and treating disorders of the brain, spinal cord, and nervous system with specialized care.</p>
+                    <div class="card-stats">
+                      <div class="stat-item">
+                        <span class="stat-number">8+</span>
+                        <span class="stat-label">Specialists</span>
+                      </div>
+                      <div class="stat-item">
+                        <span class="stat-number">200+</span>
+                        <span class="stat-label">Treatments</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                <div class="department-card">
+                  <div class="card-icon">
+                    <i class="fas fa-cut"></i>
+                  </div>
+                  <div class="card-content">
+                    <h3 class="card-title">Surgery</h3>
+                    <p class="card-description">Surgery provides precise operative treatments to diagnose, repair, or enhance the body’s health and function.</p>
+                    <div class="card-stats">
+                      <div class="stat-item">
+                        <span class="stat-number">12+</span>
+                        <span class="stat-label">Surgeons</span>
+                      </div>
+                      <div class="stat-item">
+                        <span class="stat-number">1000+</span>
+                        <span class="stat-label">Operations</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="450">
+                <div class="department-card">
+                  <div class="card-icon">
+                    <i class="fas fa-baby"></i>
+                  </div>
+                  <div class="card-content">
+                    <h3 class="card-title">Pediatrics</h3>
+                    <p class="card-description">Pediatrics offers specialized medical care for infants, children, and adolescents to support healthy growth and development.</p>
+                    <div class="card-stats">
+                      <div class="stat-item">
+                        <span class="stat-number">10+</span>
+                        <span class="stat-label">Pediatricians</span>
+                      </div>
+                      <div class="stat-item">
+                        <span class="stat-number">2000+</span>
+                        <span class="stat-label">Young patients</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+                <div class="department-card">
+                  <div class="card-icon">
+                    <i class="fas fa-eye"></i>
+                  </div>
+                  <div class="card-content">
+                    <h3 class="card-title">Ophthalmology</h3>
+                    <p class="card-description">Ophthalmology focuses on diagnosing and treating eye conditions to preserve and improve vision health.</p>
+                    <div class="card-stats">
+                      <div class="stat-item">
+                        <span class="stat-number">6+</span>
+                        <span class="stat-label">Eye Doctors</span>
+                      </div>
+                      <div class="stat-item">
+                        <span class="stat-number">800+</span>
+                        <span class="stat-label">Eye Exams</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="550">
+                <div class="department-card">
+                  <div class="card-icon">
+                    <i class="fas fa-band-aid"></i>
+                  </div>
+                  <div class="card-content">
+                    <h3 class="card-title">Dermatology</h3>
+                    <p class="card-description">Dermatology specializes in diagnosing and treating conditions of the skin, hair, and nails to maintain healthy skin.</p>
+                    <div class="card-stats">
+                      <div class="stat-item">
+                        <span class="stat-number">7+</span>
+                        <span class="stat-label">Dermatologists</span>
+                      </div>
+                      <div class="stat-item">
+                        <span class="stat-number">600+</span>
+                        <span class="stat-label">Skin Treatments</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+{% endblock %}
+
+{% block javascript %}
+
+{% endblock %}

@@ -5,19 +5,10 @@
     <meta charset="UTF-8">
     <title>Book Appointment</title>
     <link rel="stylesheet" href="{% static 'patient/css/book.css' %}">
-    <script src="{% static 'patient/js/book.js' %}"></script>
 </head>
 <body>
 
 <div class="card">
-    <!-- <h2>Book Appointment</h2>
-    <form action="{% url 'patient_dashboard' %}" method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">
-            Book
-        </button>
-    </form> -->
     <h2>Book Appointment</h2>
 
 <form method="POST">
@@ -69,6 +60,6 @@
     <button type="submit">Book</button>
 </form>
 </div>
-
+<script src="{% static 'patient/js/book.js' %}"></script>
 </body>
 </html>

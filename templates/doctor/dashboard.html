@@ -44,6 +44,49 @@
       {% endfor %}
     </tbody>
   </table>
+  <h2 style="margin-top:40px;">Today's Timeslots</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Time</th>
+      <th>Status</th>
+      <th>Patient</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {% for slot in todays_slots %}
+    <tr>
+      <td>{{ slot.time }}</td>
+
+      <td>
+        {% if slot.is_booked %}
+          <span style="color:red;font-weight:bold;">Booked</span>
+        {% else %}
+          <span style="color:green;font-weight:bold;">Available</span>
+        {% endif %}
+      </td>
+
+      <td>
+        {% if slot.is_booked %}
+            {% for book in bookings %}
+                {% if book.timeslot.id == slot.id %}
+                    {{ book.patient.name }}
+                {% endif %}
+            {% endfor %}
+        {% else %}
+        {% endif %}
+      </td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="3" style="text-align:center;">No timeslots added for today</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
 </main>
 
 </body>
