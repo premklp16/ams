@@ -9,7 +9,6 @@ STEPS TO RUN THIS PROJECT LOCALLY IN YOUR MACHINE :
 
 1) Clone the repository
     -git clone https://github.com/premklp16/ams.git
-    -cd ams
 2) Create environment variable
     - python -m venv venv
     - To activate, venv/scripts/activate
@@ -42,22 +41,28 @@ STEPS TO RUN THIS PROJECT LOCALLY IN YOUR MACHINE :
 Getting into the project:
 1) Home page:
     It comes with Hospital details and login for admin, doctor and patient.
+   
    <img width="1891" height="882" alt="Screenshot 2025-12-05 143824" src="https://github.com/user-attachments/assets/aaaec837-d65e-4a27-907c-3f92e2a02368" />
+   
    <img width="1884" height="869" alt="Screenshot 2025-12-05 143849" src="https://github.com/user-attachments/assets/9229ff56-4aa6-45ff-a8fd-2cacef5940fe" />
    
-2) Patient dashboard:
+3) Patient dashboard:
    Patient can book appointment.
+   
    <img width="1814" height="833" alt="Screenshot 2025-12-05 144045" src="https://github.com/user-attachments/assets/11baf513-60f4-4071-99e0-19454cc339c2" />
    
-3) Doctor dashboard:
+5) Doctor dashboard:
    Doctor can view his appointments for today and upcoming days and also can view his profile.
+   
    <img width="1879" height="868" alt="Screenshot 2025-12-05 144133" src="https://github.com/user-attachments/assets/28f1fba1-49af-4a89-aa85-efac895000b2" />
    
-4) Admin dashboard:
+7) Admin dashboard:
    Admin can view number of doctors working, registered patient, appointments today.
+   
    <img width="1896" height="863" alt="Screenshot 2025-12-05 144207" src="https://github.com/user-attachments/assets/65cc890e-2f4c-484c-8dbb-cfa9e132245b" />
 
    And also admin can view, add and deactivate doctors and patient
+   
    <img width="1866" height="819" alt="image" src="https://github.com/user-attachments/assets/16ea54ea-fb04-4a58-9b2b-5e93f3c40ed5" />
 
  
